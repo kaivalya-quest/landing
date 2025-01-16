@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaivalya Quest</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            overflow: hidden;
+        }
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .overlay {
+            position: absolute;
+            bottom: 5%;
+            width: 100%;
+            text-align: center;
+        }
+        .overlay button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: saffron;
+            font-family: 'Cursive', sans-serif;
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .overlay button:hover {
+            background-color: rgba(255, 165, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <video id="introVideo" autoplay muted>
+        <source src="https://kaivalya.quest/kaivalya_quest.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="overlay">
+        <button onclick="redirectToBlog()">Begin your quest for kaivalya...</button>
+    </div>
+
+    <script>
+        // Automatically redirect after 10 seconds
+        const videoDuration = 9; // Video duration in seconds
+        const redirectTime = 10; // Total time before redirect
+
+        const video = document.getElementById('introVideo');
+
+        // Sync the redirection with the video's end or timeout
+        video.addEventListener('ended', () => {
+            setTimeout(() => {
+                window.location.href = 'https://blog.kaivalya.quest';
+            }, (redirectTime - videoDuration) * 1000);
+        });
+
+        // Redirect to blog immediately when button is clicked
+        function redirectToBlog() {
+            window.location.href = 'https://blog.kaivalya.quest';
+        }
+
+        // Fallback timeout in case the video does not end
+        setTimeout(() => {
+            redirectToBlog();
+        }, redirectTime * 1000);
+    </script>
+</body>
+</html>
